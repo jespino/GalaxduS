@@ -8,9 +8,9 @@ def newgame(button):
     button.screen.context.active_screen = "newgame"
 
 def startgame(button):
-    specie = None
-    size = None
-    color = None
+    specie = 1
+    size = 1
+    color = 1
     for sprite in button.screen.sprites.sprites():
         if hasattr(sprite,'group_id'):
             if sprite.group_id == 1 and sprite.selected == True:
