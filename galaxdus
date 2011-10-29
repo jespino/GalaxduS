@@ -1,0 +1,60 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+import sys, pygame
+
+sys.path.append("./libs")
+
+import ConfigParser
+import screens
+import galaxdustk.pointer
+import gettext
+from gettext import gettext as _
+from game import *
+
+gettext.textdomain('galaxdus')
+gettext.bindtextdomain("galaxdus", "locale")
+
+class Context:
+    screen = None
+    pointer = None
+    config = None
+    active_screen = None
+    screens = None
+    game = Game()
+
+pygame.init()
+
+config = ConfigParser.ConfigParser()
+config.read('galaxdus.cfg')
+
+pygame.display.set_caption('Galaxdus')
+pygame.mouse.set_visible(0)
+resolution = (1024,768)
+
+context = Context()
+context.screen = pygame.display.set_mode(resolution)
+context.pointer = galaxdustk.pointer.Pointer()
+context.config = config
+context.active_screen = "menu"
+context.screens = {
+    'menu': screens.menu.MenuScreen(context),
+    'newgame': screens.newgame.NewGameScreen(context),
+    'galaxy': screens.galaxy.GalaxyScreen(context),
+    'star': screens.star.StarScreen(context),
+    'planet': screens.planet.PlanetScreen(context),
+    'research': screens.research.ResearchScreen(context)
+}
+
+clock = pygame.time.Clock()
+while 1:
+    clock.tick(60)
+
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            sys.exit()
+
+    active_screen = context.screens[context.active_screen]
+    active_screen.draw()
+
+    pygame.display.flip()
