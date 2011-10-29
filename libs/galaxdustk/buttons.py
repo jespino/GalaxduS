@@ -92,12 +92,15 @@ class CircularSelectButton(CircularButton):
 
     def __init__(self, screen, image_path, radius=50):
         super(CircularSelectButton,self).__init__(screen, image_path, radius)
-        self.disconnect_signal('out')
+        self.disconnect_all()
         self.connect('in', _button_in_handler)
         self.connect('out', _select_button_out_handler)
         self.connect('pushed', _button_pushed_handler)
         self.connect('released', _button_released_handler)
         self.connect('clicked', _select_button_clicked_handler)
+
+    def get_value(self):
+        return self.value
 
 class SelectButton(Button):
     selected = False
@@ -107,9 +110,12 @@ class SelectButton(Button):
 
     def __init__(self, screen, label, width=200, height=40):
         super(SelectButton,self).__init__(screen, label, width, height)
-        self.disconnect_signal('out')
+        self.disconnect_all()
         self.connect('in', _button_in_handler)
         self.connect('out', _select_button_out_handler)
         self.connect('pushed', _button_pushed_handler)
         self.connect('released', _button_released_handler)
         self.connect('clicked', _select_button_clicked_handler)
+
+    def get_value(self):
+        return self.value
