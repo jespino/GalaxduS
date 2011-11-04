@@ -17,14 +17,17 @@ def _button_released_handler(widget):
 def _select_button_out_handler(widget):
     if not widget.selected:
         widget.color = widget.color_default
+    elif widget.selected:
+        widget.color = widget.color_selected
 
 def _select_button_clicked_handler(widget):
-    widget.color = widget.color_selected
-    widget.selected = True
     for sprite in widget.screen.sprites.sprites():
         if hasattr(sprite,'group_id'):
             if sprite.group_id == widget.group_id:
                 sprite.selected = False
+                sprite.color = sprite.color_default
+    widget.color = widget.color_selected
+    widget.selected = True
 
 class Button(base.Widget):
     color = (0,0,200)
