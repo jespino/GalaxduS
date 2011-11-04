@@ -3,6 +3,7 @@
 import sys
 
 from game import *
+from sprites.stars import BigStar
 
 def newgame(button):
     button.screen.context.active_screen = "newgame"
@@ -33,11 +34,6 @@ def go_to_galaxy(button):
 
 def go_to_menu(button):
     button.screen.context.active_screen = "menu"
-
-def go_to_star(button):
-    button.screen.context.active_screen = "star"
-    button.screen.context.screens['star'].active_star = button.star
-    #button.screen.context.screens['star'].background_path = pygame.load("images/backgrounds/star_%d.png" % button.star.star_type)
 
 def options(button):
     print button.rect.centerx

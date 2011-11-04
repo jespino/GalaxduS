@@ -33,7 +33,7 @@ pygame.mouse.set_visible(0)
 resolution = (1024,768)
 
 context = Context()
-context.screen = pygame.display.set_mode(resolution)
+context.screen = pygame.display.set_mode(resolution, pygame.FULLSCREEN)
 context.pointer = galaxdustk.pointer.Pointer()
 context.config = config
 context.active_screen = "menu"
@@ -53,6 +53,11 @@ while 1:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             sys.exit()
+        elif event.type == pygame.KEYUP:
+          if event.key == pygame.K_f:
+            pygame.display.toggle_fullscreen()
+          elif event.key == pygame.K_ESCAPE:
+            print "Escape key released."
 
     active_screen = context.screens[context.active_screen]
     active_screen.draw()

@@ -36,6 +36,7 @@ class GalaxyScreen(BaseScreen):
         main_menu = Button(self, _("Main menu"), width=180)
         main_menu.rect.right = screenrect.right - 10
         main_menu.rect.bottom = screenrect.bottom - 20
+        main_menu.connect("clicked", handlers.go_to_menu)
         self.sprites.add(main_menu)
 
     def reload_stars(self):

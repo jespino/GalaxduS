@@ -15,9 +15,9 @@ class Game:
             star.name = STAR_NAMES[x]
             star.random()
             while star.position==(0,0) or star.position in ocupied_pixels:
-                star.position = (random.randint(35,565), random.randint(35,565))
-            for x in range(star.position[0]-15,star.position[0]+15):
-                for y in range(star.position[1]-15,star.position[1]+15):
+                star.position = (random.randint(35,650), random.randint(35,730))
+            for x in range(star.position[0]-25,star.position[0]+25):
+                for y in range(star.position[1]-25,star.position[1]+25):
                     ocupied_pixels.append((x,y))
             self.stars.append(star)
             
