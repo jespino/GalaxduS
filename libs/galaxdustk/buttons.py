@@ -4,9 +4,11 @@ import base
 
 def _button_in_handler(widget):
     widget.color = widget.color_hover
+    widget.screen.context.pointer.set_hover()
 
 def _button_out_handler(widget):
     widget.color = widget.color_default
+    widget.screen.context.pointer.set_default()
 
 def _button_pushed_handler(widget):
     widget.color = widget.color_pressed
